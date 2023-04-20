@@ -67,29 +67,5 @@ public class MainApplication extends Application implements ReactApplication {
 
     Analytics.trackEvent('onCreate');
 
-    try {
-      // Throw error.
-    } 
-    catch (error) {
-    
-        // Prepare properties.
-        const properties = { 'Category' : 'Music', 'Wifi' : 'On' };
-    
-        // Prepare attachments.
-        const textAttachment = ErrorAttachmentLog.attachmentWithText('Hello text attachment!', 'hello.txt');
-        const attachments = [textAttachment];
-    
-        // Create an exception model from error.
-        const exceptionModel1 = ExceptionModel.createFromError(error);
-    
-        // ..or generate with your own error data.
-        const exceptionModel2 = ExceptionModel.createFromTypeAndMessage("type", "message", "stacktrace");
-    
-        // Track error with custom data.
-        Crashes.trackError(exceptionModel1, properties, attachments);
-        Crashes.trackError(exceptionModel1, properties, nil);
-        Crashes.trackError(exceptionModel2, nil, attachments);
-        Crashes.trackError(exceptionModel2, nil, nil);
-    }
   }
 }
