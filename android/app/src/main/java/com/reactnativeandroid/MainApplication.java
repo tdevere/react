@@ -10,6 +10,12 @@ import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
 
+// Import App Center Crashes at the top of the file.
+import Crashes from 'appcenter-crashes';
+// import App Center Analytics at the top of the file.
+import Analytics from 'appcenter-analytics';
+
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -58,5 +64,32 @@ public class MainApplication extends Application implements ReactApplication {
       DefaultNewArchitectureEntryPoint.load();
     }
     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+
+    Analytics.trackEvent('onCreate');
+
+    try {
+      // Throw error.
+    } 
+    catch (error) {
+    
+        // Prepare properties.
+        const properties = { 'Category' : 'Music', 'Wifi' : 'On' };
+    
+        // Prepare attachments.
+        const textAttachment = ErrorAttachmentLog.attachmentWithText('Hello text attachment!', 'hello.txt');
+        const attachments = [textAttachment];
+    
+        // Create an exception model from error.
+        const exceptionModel1 = ExceptionModel.createFromError(error);
+    
+        // ..or generate with your own error data.
+        const exceptionModel2 = ExceptionModel.createFromTypeAndMessage("type", "message", "stacktrace");
+    
+        // Track error with custom data.
+        Crashes.trackError(exceptionModel1, properties, attachments);
+        Crashes.trackError(exceptionModel1, properties, nil);
+        Crashes.trackError(exceptionModel2, nil, attachments);
+        Crashes.trackError(exceptionModel2, nil, nil);
+    }
   }
 }
