@@ -11,9 +11,9 @@ import com.facebook.soloader.SoLoader;
 import java.util.List;
 
 // Import App Center Crashes at the top of the file.
-import Crashes from 'appcenter-crashes';
+import Crashes from "appcenter-crashes";
 // import App Center Analytics at the top of the file.
-import Analytics from 'appcenter-analytics';
+import Analytics from "appcenter-analytics";
 
 
 public class MainApplication extends Application implements ReactApplication {
@@ -65,7 +65,7 @@ public class MainApplication extends Application implements ReactApplication {
     }
     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
 
-    Analytics.trackEvent('onCreate');
+    Analytics.trackEvent("onCreate");
 
   }
 }
